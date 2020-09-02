@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
@@ -31,6 +32,8 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'ckeditor',
+    'ckeditor_uploader',
     'accounts.apps.AccountsConfig',
     'forum_app.apps.ForumAppConfig',
     'django.contrib.admin',
@@ -56,7 +59,7 @@ ROOT_URLCONF = 'forum.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -121,3 +124,25 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 LOGIN_REDIRECT_URL = 'home'
+
+CKEDITOR_UPLOAD_PATH = 'uploads/'
+MEDIA_URL = '/media/'
+MEDIA_ROOT = 'media/'
+
+
+CKEDITOR_CONFIGS = {
+    'default':
+        {'toolbar': 'Custom',
+         'toolbar_Custom': [
+             ['Bold', 'Link', 'Unlink', 'Image'],
+         ],
+         },
+    'special':
+        {'toolbar': 'Special', 'height': 200,
+         'toolbar_Special':
+             [
+                 ['Bold'],
+                 ['CodeSnippet'], # here
+             ], 'extraPlugins': 'codesnippet', # here
+         }
+}
