@@ -8,23 +8,10 @@ from django.views.generic import ListView
 def index(request):
     return render(request, 'forum_app/home.html')
 
-
-# class QuestionDetailView(DetailView):
-#     model = Question
-#     queryset = Question.objects.all()
-#
-#     #model = QuestionComment
-#     #fields = ['questionTitle', 'questionContent']
-#     template_name = 'forum_app/question_detail.html'
-
-
 class QuestionDetailView(DetailView):
-    #context_object_name = 'detail'
     model = Question
-
-  #  fields = ['questionTitle', 'questionContent']
+    # fields = ['questionTitle', 'questionContent']
     template_name = 'forum_app/question_detail.html'
-    #queryset = Question.objects.filter(id=3)
 
     def get_context_data(self, **kwargs):
         context = super(QuestionDetailView, self).get_context_data(**kwargs)
