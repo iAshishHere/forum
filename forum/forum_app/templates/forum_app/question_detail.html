@@ -12,7 +12,20 @@
     <!-- highlight.js -->
 </head>
 <body>
-    <p>{{ question.questionTitle|safe }}</p>
-    <p>{{ question.questionContent|safe }}</p>
+
+
+<p>{{ question.questionTitle|safe }}</p>
+<p>{{ question.questionContent|safe }}</p>
+
+
+<p>{{ answer}}</p>
+
+{% for ans in answer %}
+    <p>{{ ans.answerContent|safe }}</p>
+{% endfor %}
+
+
+
+
 </body>
 </html>

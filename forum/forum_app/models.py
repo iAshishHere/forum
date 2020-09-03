@@ -24,6 +24,9 @@ class QuestionComment(models.Model):
     commentContent = models.CharField(max_length=300)
     createdDate = models.DateTimeField(default=timezone.now)
 
+    def __str__(self):
+        return self.commentContent
+
 class AnswerComment(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     answer = models.ForeignKey(Answer, on_delete=models.CASCADE)
